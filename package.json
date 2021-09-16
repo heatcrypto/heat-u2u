@@ -2,9 +2,19 @@
   "name": "heat-u2u",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/tsc/main.js",
+  "types": "./dist/tsc/main.d.ts",
+  "browser": "./dist/esbuild/browser.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist build",
+    "ts-node": "ts-node",
+    "docs": "typedoc --entryPoints src/main.ts",
+    "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:dev": "esbuild src/browser.ts --bundle --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +37,7 @@
     "@types/node": "^16.9.1",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
+    "esbuild": "^0.12.28",
     "eslint": "^7.32.0",
     "jest": "^27.2.0",
     "ts-jest": "^27.0.5",
